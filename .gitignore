@@ -162,3 +162,6 @@ cython_debug/
 #.idea/
 
 config.py
+backend.db
+mlruns
+mlartifacts
