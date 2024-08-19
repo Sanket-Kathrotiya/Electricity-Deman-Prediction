@@ -36,8 +36,8 @@ def predict_endpoint():
     pred = predict(features)
 
     result = {
-        'duration': pred,
-        'model_version': "2768ee8d9ae04948930e4d21b3d0ae57"
+        'NYC electricity demand in megawatt-hours right now is ': pred,
+        
     }
 
     return jsonify(result)
