@@ -141,7 +141,7 @@ This exposes the prediction service on port 9696 of your local machine.
 #### A Makefile is provided to automate common tasks in the project
 Below are the available commands:
 - `make setup`: Install the required dependencies.
-- `mlflow-server`  : Create a mlflow local server.
+- `make mlflow-server`  : Create a mlflow local server.
 - `make prefect-login`: Log in to Prefect Cloud.
 - `make create-pool`: Create a Prefect work pool.
 - `make schedule`: Schedule the workflow.
