@@ -1,22 +1,13 @@
-import pickle
 import xgboost as xgb
 from flask import Flask, request, jsonify
 import pandas as pd
 
 
 model = xgb.Booster()
-model.load_model("models/xgb_model.bin")
+model.load_model("xgb_model.bin")
         
 def prepare_data(new_data):
-    new_observation = pd.DataFrame({
-    'temperature' : [21],
-    'year': [2024],
-    'month': [8],
-    'day': [12],
-    'hr': [3],
-    'day_of_week': [1],
-    'is_weekend': [0],
-    'holiday': [0]})
+    new_observation = pd.DataFrame([new_data])
     return  new_observation 
 
 def predict(features):
@@ -26,14 +17,12 @@ def predict(features):
 
 app = Flask('Demand-prediction')
 
-
-
 @app.route('/predict', methods=['POST'])
 def predict_endpoint():
-    ride = request.get_json()
+    data = request.get_json()
 
-    features = prepare_data(ride)
-    pred = predict(features)
+    data = prepare_data(data)
+    pred = predict(data)
 
     result = {
         'NYC electricity demand in megawatt-hours right now is ': pred,

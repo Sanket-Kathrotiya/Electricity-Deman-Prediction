@@ -1,7 +1,14 @@
 import pandas as pd 
 import requests
-
-new_observation = {'temperature': 21}
+new_observation = {
+    'temperature' : 21,
+    'year': 2024,
+    'month': 8,
+    'day': 12,
+    'hr': 3,
+    'day_of_week': 1,
+    'is_weekend': 0,
+    'holiday': 0}
 
 url = 'http://localhost:9696/predict'
 response = requests.post(url, json=new_observation)
