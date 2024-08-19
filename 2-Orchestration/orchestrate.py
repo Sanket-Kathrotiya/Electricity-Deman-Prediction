@@ -73,6 +73,7 @@ def train_model(X_train, X_val, y_train, y_val):
     mlflow.log_metric("rmse", rmse)
     
     pathlib.Path("models").mkdir(exist_ok=True)
+    model.save_model("models/xgb_model.bin")   
     mlflow.xgboost.log_model(model, artifact_path="models_mlflow")
     
     return None
