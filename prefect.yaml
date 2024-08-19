@@ -35,7 +35,7 @@ deployments:
   version:
   tags: []
   description:
-  entrypoint: 
+  entrypoint:
     /workspaces/Electricity-Demand-Prediction/2-Orchestration/orchestrate.py:main_flow
   parameters: {}
   work_pool:

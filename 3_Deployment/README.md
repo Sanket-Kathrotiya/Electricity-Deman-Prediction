@@ -34,5 +34,3 @@ Execute the test script using Python:
 ```python
 python test.py
 ```
-
-

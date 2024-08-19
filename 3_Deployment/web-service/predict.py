@@ -5,7 +5,7 @@ import pandas as pd
 
 model = xgb.Booster()
 model.load_model("xgb_model.bin")
-        
+
 def prepare_data(new_data):
     """
     Converts input data into a DataFrame.
@@ -14,7 +14,7 @@ def prepare_data(new_data):
     :return: A DataFrame created from the input data.
     """
     new_observation = pd.DataFrame([new_data])
-    return  new_observation 
+    return  new_observation
 
 def predict(features):
     """

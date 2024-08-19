@@ -1,4 +1,4 @@
-import pandas as pd 
+import pandas as pd
 import requests
 new_observation = {
     'temperature' : 21,
