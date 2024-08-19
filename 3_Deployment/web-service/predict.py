@@ -4,8 +4,8 @@ from flask import Flask, request, jsonify
 import pandas as pd
 
 
-with open("xgb_model.pkl", "rb") as f:
-    model = pickle.load(f)
+model = xgb.Booster()
+model.load_model("models/xgb_model.bin")
         
 def prepare_data(new_data):
     new_observation = pd.DataFrame({
@@ -37,7 +37,7 @@ def predict_endpoint():
 
     result = {
         'duration': pred,
-        'model_version': "0ac14477b69842e195919d1cab69d066"
+        'model_version': "2768ee8d9ae04948930e4d21b3d0ae57"
     }
 
     return jsonify(result)

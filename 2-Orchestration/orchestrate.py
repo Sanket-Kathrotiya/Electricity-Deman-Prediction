@@ -49,7 +49,7 @@ def train_model(X_train, X_val, y_train, y_val):
     valid = xgb.DMatrix(X_val, label=y_val)
 
     best_params = ({'learning_rate': 0.18891478774394413,
-                    'max_depth': 9.0, 
+                    'max_depth': 9, 
                     'min_child_weight': 6.642316776962908,
                     'reg_alpha': 0.012540977368792963, 
                     'reg_lambda': 0.012396118588604442})
@@ -88,5 +88,6 @@ def main_flow(dataset_path):
     
     
 if __name__ == "__main__":
-    main_flow("/workspaces/Electricity-Demand-Prediction/2-Orchestration/dataset.csv")
+    dataset_path = "1-Model_Training/Data/dataset.csv"
+    main_flow(dataset_path)
     
