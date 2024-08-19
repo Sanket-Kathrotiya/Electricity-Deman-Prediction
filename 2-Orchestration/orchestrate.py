@@ -7,8 +7,6 @@ import xgboost as xgb
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-from sklearn.linear_model import LinearRegression , Lasso
-from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 from hyperopt.pyll import scope
@@ -18,6 +16,12 @@ from prefect import flow, task
 
 @task(retries=3, retry_delay_seconds=2)
 def read_dataframe(filename):
+    """
+    Reads a CSV file into a DataFrame, processes date and demand columns, and adds additional features.
+
+    :param filename: Path to the CSV file to be read.
+    :return: DataFrame with processed columns and additional features (year, month, day, hour, day_of_week, is_weekend, holiday).
+    """
     df = pd.read_csv(filename)
     df['date'] = pd.to_datetime(df['date'])
     df['demand'] = pd.to_numeric(df['demand'], errors='coerce').astype('float')
@@ -35,6 +39,12 @@ def read_dataframe(filename):
 
 @task
 def split_data(df):
+    """
+    Splits a DataFrame into training and validation sets for features and target.
+
+    :param df: DataFrame containing the features and target variable. The 'demand' and 'date' columns are used to separate features from the target.
+    :return: Tuple containing (X_train, X_val, y_train, y_val), where X_train and X_val are the feature sets, and y_train and y_val are the target sets.
+    """
    
     X = df.drop('demand', axis=1)
     X = X.drop('date', axis=1)
@@ -42,9 +52,21 @@ def split_data(df):
     y = df['demand']
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
     return X_train, X_val, y_train, y_val
+
     
 @task
 def train_model(X_train, X_val, y_train, y_val):
+    """
+    Trains an XGBoost model and logs parameters and metrics using MLflow.
+
+    :param X_train: Features for training the model.
+    :param X_val: Features for validating the model.
+    :param y_train: Target values for the training data.
+    :param y_val: Target values for the validation data.
+
+    :return: None. Saves the model and logs information to MLflow.
+    """
+
     train = xgb.DMatrix(X_train, label=y_train)
     valid = xgb.DMatrix(X_val, label=y_val)
 

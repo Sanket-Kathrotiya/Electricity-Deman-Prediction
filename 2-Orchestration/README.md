@@ -6,4 +6,5 @@ We can create a work pool in the UI or from the CLI. Let's use the CLI:
 
 run the 2-Orchestration/workflow_deployment.py to schedule the workflow
 
-
+run the 2-Orchestration/orchestrate.py file using 
+`python 2-Orchestration/orchestrate.py`
