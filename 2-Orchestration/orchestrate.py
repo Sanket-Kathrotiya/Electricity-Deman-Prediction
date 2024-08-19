@@ -110,6 +110,6 @@ def main_flow(dataset_path):
     
     
 if __name__ == "__main__":
-    dataset_path = "1-Model_Training/Data/dataset.csv"
+    dataset_path = "1-Model_Training/mlflow/dataset.csv"
     main_flow(dataset_path )
     

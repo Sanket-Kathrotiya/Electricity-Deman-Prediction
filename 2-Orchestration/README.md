@@ -2,7 +2,7 @@
 
 This section explains how to connect to Prefect's API, create a work pool, and run the orchestration scripts to manage workflows.
 
-### 1. Connect to Prefect's API
+1. **Connect to Prefect's API**
 
 To connect to Prefect's cloud service, log in using the following command:
 
