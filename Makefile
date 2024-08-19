@@ -13,6 +13,7 @@ help:
 	@echo ""
 	@echo "Targets:"
 	@echo "  setup           Install dependencies."
+	@echo "  mlflow-server   Create mlflow local server "
 	@echo "  prefect-login   Log in to Prefect Cloud."
 	@echo "  create-pool     Create a Prefect work pool."
 	@echo "  schedule        Schedule the workflow."
@@ -24,6 +25,11 @@ help:
 .PHONY: setup
 setup:
 	pip install -r requirements.txt
+
+# mlflow server
+.PHONY: mlflow-server
+mlflow-server:
+	$(PYTHON)  -m mlflow server --backend-store-uri sqlite:///backend.db
 
 # Prefect login
 .PHONY: prefect-login

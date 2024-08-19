@@ -11,3 +11,4 @@ retry_requests
 hyperopt
 prefect
 flask
+evidently
