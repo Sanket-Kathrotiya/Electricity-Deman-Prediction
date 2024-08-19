@@ -26,7 +26,6 @@ def predict_endpoint():
 
     result = {
         'NYC electricity demand in megawatt-hours right now is ': pred,
-        
     }
 
     return jsonify(result)
