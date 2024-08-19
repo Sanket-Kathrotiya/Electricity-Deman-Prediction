@@ -48,15 +48,11 @@ def train_model(X_train, X_val, y_train, y_val):
     train = xgb.DMatrix(X_train, label=y_train)
     valid = xgb.DMatrix(X_val, label=y_val)
 
-    best_params = {
-            "learning_rate": 0.0586404851125085,
-            "max_depth": 50,
-            "min_child_weight":20.015712277727033,
-            "objective": "reg:linear",
-            "reg_alpha": 0.08252780266300169,   
-            "reg_lambda": 0.2747801103979149,
-            "seed": 42,
-        }
+    best_params = ({'learning_rate': 0.18891478774394413,
+                    'max_depth': 9.0, 
+                    'min_child_weight': 6.642316776962908,
+                    'reg_alpha': 0.012540977368792963, 
+                    'reg_lambda': 0.012396118588604442})
     
     mlflow.log_params(best_params)
      
