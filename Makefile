@@ -62,3 +62,9 @@ deploy:
 .PHONY: test
 test:
 	$(PYTHON) 3_Deployment/web-service/test.py
+
+# Run the test script
+.PHONY: test2
+test2:
+	cd 3_Deployment/test && \
+	$(PYTHON) test_with_five_random_data.py
