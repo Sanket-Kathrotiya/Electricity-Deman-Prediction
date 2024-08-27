@@ -165,4 +165,6 @@ config.py
 backend.db
 mlruns
 mlartifacts
+.github
 .vscode
+temp
