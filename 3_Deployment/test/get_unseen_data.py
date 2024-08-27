@@ -34,8 +34,8 @@ def fetch_electricity_demand_data(start_date, end_date, eia_key):
     if df:
         demand_hourly = pd.concat(df, ignore_index=True)
         demand_hourly = demand_hourly[['period', 'value']].rename(columns={'period': 'date', 'value': 'demand'})
-        demand_hourly['date'] = pd.to_datetime(demand_hourly['date'], infer_datetime_format=True)
-        demand_hourly['date'] = demand_hourly['date'].dt.floor('H')
+        demand_hourly['date'] = pd.to_datetime(demand_hourly['date'])
+        demand_hourly['date'] = demand_hourly['date'].dt.floor('h')
         return demand_hourly
     else:
         raise RuntimeError("Data fetching was unsuccessful.")
@@ -96,9 +96,12 @@ def merge_and_enrich_data(demand_hourly, hourly_temperature_dataframe):
     return df
 
 def get_recent_data(eia_key):
-    # Define the date range for the last 10 days
+
     end_date = datetime.now()
-    start_date = end_date - timedelta(days=10)
+    # Set the start date to August 1, 2024, at 00:00:00
+    start_date = datetime(2024, 8, 1, 0, 0, 0)
+    # or  the date range for the last 10 days
+    #start_date = end_date - timedelta(days=10)
 
     try:
         # Fetch data
